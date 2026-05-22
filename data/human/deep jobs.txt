@@ -1,32 +1,29 @@
 # Deep Recovery and Rescue Jobs
-# Easy ones
 
+# Easy ones
 mission "Recovery Standard Deep Asset"
-	name "Secure Deep Security Sensor Core in <waypoints>"
-	description "A long-range deep automated sweep drone carrying an 'Encrypted Deep-Space Scan Log' has lost power in the <waypoints> system."
+	name "Secure Deep Security Sensor Core in <destination>"
+	description "Deep Security Intelligence requires a discreet captain to recover a classified black-box data tape weighting <cargo> tons from a wrecked vessel in the <destination> system. Be advised that anti-tamper security grids may be active. Payment for successful extraction is 45,000 credits."
+	job
 	repeat
+	"offer precedence" 1000
 	source
-		attributes "The Deep"
-	destination <origin>
-	waypoint
+		not attributes "uninhabited"
+	destination
 		distance 2 7
-	deadline
+		not attributes "uninhabited"
+	cargo 10 20 0.7
 	to offer
 		"rr_intro_completed" == 1
-	npc assist
-		system <waypoints>
+	npc
 		government "Derelict"
-		personality derelict target pacifist mute
+		personality "derelict" "staying"
 		ship "Headhunter" "Classified Deep Wreck"
 		on board
 			conversation
 				"Your system techs cut into the primary command node, pulling the black-box data tape. The tech reports the telemetry log is secured, but the drone's anti-tamper security grid has spiked the battery cells and it is going up."
-	npc
-		system <waypoints>
-		government "Pirate"
-		personality staying
-		fleet "Small Southern Pirates" 2
 	on complete
+		"deep_asset_ambush_1_ready" = 1
 		conversation
 			"You return to <origin>. Deep Intelligence agents take custody of the drive under strict radio silence curtains and your holds are clear."
 		"rr_operations_jobs_done" ++
@@ -37,33 +34,41 @@ mission "Recovery Standard Deep Asset"
 			"Deep Security Intelligence places a secure administrative lockdown black mark across your spacer pilot file."
 		"reputation: Deep Security" -= 0.15
 
+mission "Recovery Standard Deep Asset Ambush"
+	invisible
+	to offer
+		"deep_asset_ambush_1_ready" == 1
+	deadline 1
+	npc
+		government "Pirate"
+		personality "hunting"
+		fleet "Small Southern Pirates"
+	on complete
+		"deep_asset_ambush_1_ready" = 0
+
 mission "Rescue Stranded Deep Security Agents"
-	name "Rescue Stranded Deep Agents in <waypoints>"
-	description "Board the classified Deep Security vessel stranded in the <waypoints> system. Transfer the <bunks> agents to your ship, then bring them back here to <origin>."
+	name "Rescue Stranded Deep Agents in <destination>"
+	description "Deep Security requires an immediate, silent extraction of undercover agents stranded aboard a classified wreck in the <destination> system. Payment for their safe return is 45,000 credits."
+	job
 	repeat
+	"offer precedence" 1000
 	source
-		attributes "The Deep"
-	passengers 10 5 1
-	destination <origin>
-	waypoint
+		not attributes "uninhabited"
+	passengers 10 15 0.7
+	destination
 		distance 2 7
-	deadline
+		not attributes "uninhabited"
 	to offer
 		"rr_intro_completed" == 1
-	npc assist
-		system <waypoints>
+	npc
 		government "Derelict"
-		personality derelict target pacifist mute
+		personality "derelict" "staying"
 		ship "Headhunter" "Classified Deep Wreck"
 		on board
 			conversation
 				"Agents silently file through the airlock into your bunks. The lead agent quietly commands an emergency burn because the wreck's anti-tamper explosives are primed."
-	npc
-		system <waypoints>
-		government "Pirate"
-		personality staying
-		fleet "Small Southern Pirates" 2
 	on complete
+		"deep_rescue_ambush_1_ready" = 1
 		conversation
 			"You return to <origin>. The agents disembark under cover of heavy security escorts and your bunks are now clear."
 		"rr_operations_jobs_done" ++
@@ -74,35 +79,42 @@ mission "Rescue Stranded Deep Security Agents"
 			"Deep Security Intelligence logs a massive failure on your record for the loss of their undercover agents."
 		"reputation: Deep Security" -= 0.15
 
-# Mid ones
+mission "Rescue Stranded Deep Security Agents Ambush"
+	invisible
+	to offer
+		"deep_rescue_ambush_1_ready" == 1
+	deadline 1
+	npc
+		government "Pirate"
+		personality "hunting"
+		fleet "Small Southern Pirates"
+	on complete
+		"deep_rescue_ambush_1_ready" = 0
 
+# Mid ones
 mission "Recovery Military Deep Security Asset"
-	name "Retrieve Deep Security Black Box in <waypoints>"
-	description "A Deep Security covert monitor vessel has been compromised in the <waypoints> system carrying an 'Encrypted Intelligence Manifest'."
+	name "Retrieve Deep Security Black Box in <destination>"
+	description "A Deep Observer has been destroyed in the <destination> system. You are contracted to rip the hidden terminal weighting <cargo> tons from its command console before pirate interception fleets arrive. Payment for securing this military intelligence is 100,000 credits."
+	job
 	repeat
+	"offer precedence" 1000
 	source
-		attributes "The Deep"
-	destination <origin>
-	waypoint
+		not attributes "uninhabited"
+	destination
 		distance 4 9
-	deadline
+		not attributes "uninhabited"
+	cargo 40 70 0.4
 	to offer
 		"rr_mid_tier_unlocked" == 1
-	npc assist
-		system <waypoints>
+	npc
 		government "Derelict"
-		personality derelict target pacifist mute
+		personality "derelict" "staying"
 		ship "Falcon" "Destroyed Deep Observer"
 		on board
 			conversation
 				"Your boarding party rips the hidden terminal out of the dead vessel's command console. The officer reports the manifest is secured, but the tamper protocols have initiated a localized self-destruct and a pirate intercept fleet is breaking from hyperspace."
-	npc
-		system <waypoints>
-		government "Pirate"
-		personality staying
-		fleet "Small Southern Pirates" 3
-		fleet "Large Southern Pirates" 1
 	on complete
+		"deep_asset_ambush_2_ready" = 1
 		conversation
 			"You arrive safely at <origin>. Deep Intelligence officers silently confiscate the drive and erase all local access logs."
 		"rr_operations_jobs_done" ++
@@ -113,34 +125,42 @@ mission "Recovery Military Deep Security Asset"
 			"Deep Security Intelligence places a massive bounty and operational block on your license for the lost data."
 		"reputation: Deep Security" -= 0.20
 
+mission "Recovery Military Deep Security Asset Ambush"
+	invisible
+	to offer
+		"deep_asset_ambush_2_ready" == 1
+	deadline 1
+	npc
+		government "Pirate"
+		personality "hunting"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
+	on complete
+		"deep_asset_ambush_2_ready" = 0
+
 mission "Rescue Military Deep Security Agents"
-	name "Secure Deep Security Fleet Core in <waypoints>"
-	description "A high-clearance tactical containment team has suffered critical hull collapse deep in the unmapped sectors of the <waypoints> system."
+	name "Secure Deep Security Fleet Core in <destination>"
+	description "Commanders carrying unlisted Deep Security insignia require emergency extraction from a classified Vanguard wreck in the <destination> system. Total radio silence is mandated. Payment for this mid-tier extraction is 100,000 credits."
+	job
 	repeat
+	"offer precedence" 1000
 	source
-		attributes "The Deep"
-	passengers 20 10 1
-	destination <origin>
-	waypoint
+		not attributes "uninhabited"
+	passengers 20 40 0.4
+	destination
 		distance 4 9
-	deadline
+		not attributes "uninhabited"
 	to offer
 		"rr_mid_tier_unlocked" == 1
-	npc assist
-		system <waypoints>
+	npc
 		government "Derelict"
-		personality derelict target pacifist mute
+		personality "derelict" "staying"
 		ship "Falcon" "Classified Deep Vanguard Wreck"
 		on board
 			conversation
 				"Commanders wearing unlisted insignia breach into your ship. The agent snaps to lock down all outgoing system comms as an aggressive interception fleet has just matched your local beacon coordinates."
-	npc
-		system <waypoints>
-		government "Pirate"
-		personality staying
-		fleet "Small Southern Pirates" 3
-		fleet "Large Southern Pirates" 1
 	on complete
+		"deep_rescue_ambush_2_ready" = 1
 		conversation
 			"You return silently to <origin>. Heavy armor transport details instantly seal off the private docking pad to receive the team and your bunks are clear."
 		"rr_operations_jobs_done" ++
@@ -151,88 +171,119 @@ mission "Rescue Military Deep Security Agents"
 			"Deep Security Intelligence places a secure administrative lockdown black mark across your spacer pilot file."
 		"reputation: Deep Security" -= 0.25
 
-# Hard ones
-
-mission "Recovery Endgame Deep Security Core"
-	name "CRITICAL: Salvage Deep Security Singularity Core in <waypoints>"
-	description "A black-site classified mobile fortress carrying an 'Unstable Singularity Core' has suffered total system collapse in the <waypoints> system."
-	source
-		attributes "The Deep"
-	destination <origin>
-	waypoint
-		distance 8 13
-	deadline
+mission "Rescue Military Deep Security Agents Ambush"
+	invisible
 	to offer
-		"your_mission_cooldown_date" <= "day"
+		"deep_rescue_ambush_2_ready" == 1
+	deadline 1
+	npc
+		government "Pirate"
+		personality "hunting"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
+	on complete
+		"deep_rescue_ambush_2_ready" = 0
+
+# Hard ones
+mission "Recovery Endgame Deep Security Core"
+	name "CRITICAL: Salvage Deep Security Singularity Core in <destination>"
+	description "CRITICAL CONTRACT: Extract a dangerously unstable singularity mechanism weighting <cargo> tons from a ruined Deep Security fortress in the <destination> system. The derelict's gravity containment is collapsing, and heavy raider warships are tracking the beacon. Failure will result in severe license penalties. Payment for this endgame salvage operation is 250,000 credits."
+	job
+	repeat
+	"offer precedence" 1000
+	source
+		not attributes "uninhabited"
+	destination
+		distance 8 13
+		not attributes "uninhabited"
+	cargo 110 150 0.15
+	to offer
+		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-	npc assist
-		system <waypoints>
+	npc
 		government "Derelict"
-		personality derelict target pacifist mute
+		personality "derelict" "staying"
 		ship "Leviathan" "Ruined Deep Security Fortress"
 		on board
 			conversation
 				"Your specialist crew extracts the dangerously unstable singularity mechanism. The chief yells that the core is secured but the gravity containment field is collapsing on the derelict, urging you to disengage as heavy raider warships and swarms of fast interceptors are dropping directly out of hyperspace on your coordinate tracks."
 			"deep_endgame_salvage" = 1
-	npc
-		system <waypoints>
-		government "Pirate"
-		personality staying
-		fleet "Small Southern Pirates" 3
-		fleet "Small Core Pirates" 2
-		fleet "Large Core Pirates" 1
-		fleet "Large Southern Pirates" 1
 	on complete
+		"deep_endgame_core_ambush_ready" = 1
 		conversation
 			"You arrive safely at <origin>. Heavily armed deep operatives swarm your ship to silently extract the singularity core and your holds are clear."
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.15
-		"your_mission_cooldown_date" = "day" + 15
+		"your_mission_cooldown_date" = day + 15
 		payment 250000
 	on fail
 		conversation
 			"Deep Security cuts all ties, completely revoking your clearance for losing a weapon of mass destruction."
 		"reputation: Deep Security" -= 0.40
-		"your_mission_cooldown_date" = "day" + 30
+		"your_mission_cooldown_date" = day + 30
+
+mission "Recovery Endgame Deep Security Core Ambush"
+	invisible
+	to offer
+		"deep_endgame_core_ambush_ready" == 1
+	deadline 1
+	npc
+		government "Pirate"
+		personality "hunting"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+	on complete
+		"deep_endgame_core_ambush_ready" = 0
 
 mission "Rescue Endgame Deep Security Agents"
-	name "CRITICAL: Evacuate Deep Intelligence Directors in <waypoints>"
-	description "A highly classified mobile fortress is undergoing structural failure in the <waypoints> system."
+	name "CRITICAL: Evacuate Deep Intelligence Directors in <destination>"
+	description "CRITICAL CONTRACT: A Deep Security black-site in the <destination> system has been compromised. You must evacuate top-tier Intelligence Directors under heavy fire. Losing these assets will result in a kill order on your file. Payment for this endgame evacuation is 250,000 credits."
+	job
+	repeat
+	"offer precedence" 1000
 	source
-		attributes "The Deep"
-	passengers 40 20 1
-	destination <origin>
-	waypoint
+		not attributes "uninhabited"
+	passengers 60 90 0.15
+	destination
 		distance 8 13
-	deadline
+		not attributes "uninhabited"
 	to offer
-		"your_mission_cooldown_date" <= "day"
+		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-	npc assist
-		system <waypoints>
+	npc
 		government "Derelict"
-		personality derelict target pacifist mute
+		personality "derelict" "staying"
 		ship "Leviathan" "Ruined Deep Security Fortress"
 		on board
 			conversation
 				"The airlock mechanisms are overridden as silent heavily armored agents pour onto your decks. A director states coldly to break orbit as the black-site is compromised and hostiles are tracking your beacon."
-	npc
-		system <waypoints>
-		government "Pirate"
-		personality staying
-		fleet "Small Southern Pirates" 3
-		fleet "Small Core Pirates" 2
-		fleet "Large Core Pirates" 1
-		fleet "Large Southern Pirates" 1
 	on complete
+		"deep_endgame_rescue_ambush_ready" = 1
 		conversation
 			"You safely navigate down to <origin>. Unmarked transports lock down the hangar area as the directors disembark in total silence and your bunks are clear."
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.15
-		"your_mission_cooldown_date" = "day" + 15
+		"your_mission_cooldown_date" = day + 15
 		payment 250000
 	on fail
 		conversation
 			"Deep Security Intelligence places a kill order on your file because you allowed top-tier directors to fall into the hands of unknown hostiles."
 		"reputation: Deep Security" -= 0.40
-		"your_mission_cooldown_date" = "day" + 30
+		"your_mission_cooldown_date" = day + 30
+
+mission "Rescue Endgame Deep Security Agents Ambush"
+	invisible
+	to offer
+		"deep_endgame_rescue_ambush_ready" == 1
+	deadline 1
+	npc
+		government "Pirate"
+		personality "hunting"
+		fleet "Small Southern Pirates" 2
+		fleet "Large Southern Pirates"
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates"
+	on complete
+		"deep_endgame_rescue_ambush_ready" = 0

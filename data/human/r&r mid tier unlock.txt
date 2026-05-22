@@ -9,7 +9,7 @@ mission "R&R Mid-Tier Invitation"
 		"rr_mid_tier_unlocked" == 0
 		"rr_mid_tier_started" == 0
 		"rr_mid_tier_cooldown" <= day
-		"rr_mid_tier_req" = 1
+		"rr_mid_tier_req" == 1
 
 	on offer
 		conversation
@@ -26,6 +26,7 @@ mission "R&R Mid-Tier Invitation"
 	passengers 20 10 1
 
 	npc
+		system "Regulus"
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Falcon" "Damaged R&R Ops Recovery Hull"

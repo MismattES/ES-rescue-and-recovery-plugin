@@ -12,7 +12,7 @@ mission "R&R Hard-Tier Emergency"
 		"rr_hard_tier_unlocked" == 0
 		"rr_hard_cooldown" <= day
 		"rr_mid_tier_unlocked" == 1
-		"rr_hard_tier_req" = 1
+		"rr_hard_tier_req" == 1
 
 	on offer
 		conversation
@@ -29,6 +29,7 @@ mission "R&R Hard-Tier Emergency"
 	passengers 40 20 1
 
 	npc
+		system destination
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Leviathan" "Burning Fleet Flagship"

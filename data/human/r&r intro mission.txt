@@ -2,8 +2,8 @@ mission "R&R Operations Introduction"
 	name "Freelancer Contract: Simple Retrieval"
 	description "Dana, a representative of a specialized recovery organization, has contracted you for a retrieval in the Eteron system. Return to Mars to receive your 25,000 credits."
 	source "Mars"
-	destination "Mars"
 	waypoint "Eteron"
+	destination "Mars"
 	to offer
 		"rr_intro_completed" == 0
 		"rr_intro_cooldown" <= day
@@ -16,10 +16,10 @@ mission "R&R Operations Introduction"
 			branch "branch_b"
 				"rr_intro_offered" == -1
 			"Hey, my name is Dana. I am a member of an organization that deals in recovering things. What do you think about doing a little retrieval in Eteron?"
-			goto "offer_choice"
+			branch "offer_choice"
 			label "branch_a"
 				"Let's try this again, pilot."
-			goto "offer_choice"
+			branch "offer_choice"
 			label "branch_b"
 				"Are you ready to take the contract now?"
 			label "offer_choice"
@@ -34,6 +34,7 @@ mission "R&R Operations Introduction"
 		"rr_intro_completed" = 0
 
 	npc
+		system "Eteron"
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Headhunter" "Disabled Auxiliary Hull"

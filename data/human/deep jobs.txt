@@ -13,21 +13,23 @@ mission "Recovery Standard Deep Asset"
 		distance 2 7
 		not attributes "uninhabited"
 	cargo 10 20 0.7
+	deadline
 	to offer
 		"rr_intro_completed" == 1
-	on accept
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Headhunter" "Classified Deep Wreck"
-			on assist
-				"deep_asset_ambush_1_ready" = 1
-				conversation
-					"Your system techs cut into the primary command node, pulling the black-box data tape. The tech reports the telemetry log is secured, but the drone's anti-tamper security grid has spiked the battery cells and it is going up."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Headhunter" "Classified Deep Wreck"
+		on assist
+			"deep_asset_ambush_1_ready" = 1
+			conversation
+				"Your system techs cut into the primary command node, pulling the black-box data tape. The tech reports the telemetry log is secured, but the drone's anti-tamper security grid has spiked the battery cells and it is going up."
+
 	on complete
 		conversation
-			"You land at the local spaceport. Deep Intelligence agents take custody of the drive under strict radio silence curtains and your holds are clear."
+			""The moment your landing gear locks at the spaceport, a squad of Deep Security operatives in unmarked armor boards your ship. They secure the black-box data tape in absolute silence, hand you a certified cred-stick, and depart just as quickly. A text-only message appears on your console: 'Extraction successful. Your discretion is valued, Captain.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
@@ -38,10 +40,10 @@ mission "Recovery Standard Deep Asset"
 		"reputation: Deep Security" -= 0.15
 		"reputation: R&R Stranded Ships Operations" -= 0.15
 	on abort
-        conversation
-            "Deep Security Intelligence monitors your departure with cold contempt. 'Cowardice is a poor career choice, Captain. We don't take kindly to assets who fold under the first sign of pressure. Do not expect to work with us again.'"
-        "reputation: Deep Security" -= 0.20
-        "reputation: R&R Stranded Ships Operations" -= 0.20
+		conversation
+			"Deep Security Intelligence monitors your departure with cold contempt. 'Cowardice is a poor career choice, Captain. We don't take kindly to assets who fold under the first sign of pressure. Do not expect to work with us again.'"
+		"reputation: Deep Security" -= 0.20
+		"reputation: R&R Stranded Ships Operations" -= 0.20
 
 mission "Rescue Stranded Deep Security Agents"
 	name "Rescue Stranded Deep Agents in <destination>"
@@ -55,9 +57,12 @@ mission "Rescue Stranded Deep Security Agents"
 	destination
 		distance 2 7
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"rr_intro_completed" == 1
+
 	npc
+		system destination
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Headhunter" "Classified Deep Wreck"
@@ -65,10 +70,10 @@ mission "Rescue Stranded Deep Security Agents"
 			"deep_rescue_ambush_1_ready" = 1
 			conversation
 				"Agents silently file through the airlock into your bunks. The lead agent quietly commands an emergency burn because the wreck's anti-tamper explosives are primed."
-			
+
 	on complete
 		conversation
-			"You land at the local spaceport. The agents disembark under cover of heavy security escorts and your bunks are now clear."
+			"You touch down at the spaceport under a heavily encrypted flight path. The rescued agents don't say a word as they disembark into a waiting armored transport. Moments later, your console chimes with a secure transfer and a brief audio file from a handler: 'Assets secured. Deep Security remembers those who keep our people out of the dark.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
@@ -79,10 +84,10 @@ mission "Rescue Stranded Deep Security Agents"
 		"reputation: Deep Security" -= 0.15
 		"reputation: R&R Stranded Ships Operations" -= 0.15
 	on abort
-        conversation
-            "A Deep Security handler's voice crackles over your comms, devoid of emotion. 'You are abandoning classified personnel in an active sector? Your lack of resolve has been noted. Consider your license under permanent review.'"
-        "reputation: Deep Security" -= 0.20
-        "reputation: R&R Stranded Ships Operations" -= 0.20
+		conversation
+			"A Deep Security handler's voice crackles over your comms, devoid of emotion. 'You are abandoning classified personnel in an active sector? Your lack of resolve has been noted. Consider your license under permanent review.'"
+		"reputation: Deep Security" -= 0.20
+		"reputation: R&R Stranded Ships Operations" -= 0.20
 
 # Mid ones
 mission "Recovery Military Deep Security Asset"
@@ -97,10 +102,12 @@ mission "Recovery Military Deep Security Asset"
 		distance 4 9
 		not attributes "uninhabited"
 	cargo 40 70 0.4
+	deadline
 	to offer
 		"rr_mid_tier_unlocked" == 1
-		
+
 	npc
+		system destination
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Falcon" "Destroyed Deep Observer"
@@ -108,10 +115,10 @@ mission "Recovery Military Deep Security Asset"
 			"deep_military_asset_ambush_1_ready" = 1
 			conversation
 				"Your boarding party rips the hidden terminal out of the dead vessel's command console. The officer reports the manifest is secured, but the tamper protocols have initiated a localized self-destruct and a pirate intercept fleet is breaking from hyperspace."
-			
+
 	on complete
 		conversation
-			"You land safely at the local spaceport. Deep Intelligence officers silently confiscate the drive and erase all local access logs."
+			"Before the docking clamps even fully engage, Deep Intelligence officers sweep your cargo hold, securing the military terminal and aggressively scrubbing your ship's local access logs. A handler's voice crackles over a secure channel. 'Clean extraction, pilot. The data on that terminal just shifted the balance of power in this sector. You've earned this payout.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
@@ -122,10 +129,10 @@ mission "Recovery Military Deep Security Asset"
 		"reputation: Deep Security" -= 0.20
 		"reputation: R&R Stranded Ships Operations" -= 0.20
 	on abort
-        conversation
-            "Deep Security Intelligence immediately cuts the connection. 'Aborting a high-priority tactical extraction? You are a liability, and we have no further use for liabilities in the field.'"
-        "reputation: Deep Security" -= 0.25
-        "reputation: R&R Stranded Ships Operations" -= 0.25
+		conversation
+			"Deep Security Intelligence immediately cuts the connection. 'Aborting a high-priority tactical extraction? You are a liability, and we have no further use for liabilities in the field.'"
+		"reputation: Deep Security" -= 0.25
+		"reputation: R&R Stranded Ships Operations" -= 0.25
 
 mission "Rescue Military Deep Security Agents"
 	name "Secure Deep Security Fleet Core in <destination>"
@@ -139,10 +146,12 @@ mission "Rescue Military Deep Security Agents"
 	destination
 		distance 4 9
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"rr_mid_tier_unlocked" == 1
-		
+
 	npc
+		system destination
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Falcon" "Classified Deep Vanguard Wreck"
@@ -150,10 +159,10 @@ mission "Rescue Military Deep Security Agents"
 			"deep_military_rescue_ambush_1_ready" = 1
 			conversation
 				"Commanders wearing unlisted insignia breach into your ship. The agent snaps to lock down all outgoing system comms as an aggressive interception fleet has just matched your local beacon coordinates."
-			
+
 	on complete
 		conversation
-			"You land silently at the local spaceport. Heavy armor transport details instantly seal off the private docking pad to receive the team and your bunks are clear."
+			"You ease into a private docking pad heavily cordoned off by unmarked military transports. The unlisted commanders disembark, offering you a brief, stiff salute before disappearing into the shadows. Your terminal lights up with a massive credit transfer and a terse note: 'Command structure preserved. Exceptional work under fire, Captain.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
@@ -164,10 +173,10 @@ mission "Rescue Military Deep Security Agents"
 		"reputation: Deep Security" -= 0.25
 		"reputation: R&R Stranded Ships Operations" -= 0.25
 	on abort
-        conversation
-            "The handler's voice is chillingly flat. 'Leaving our command team to die in a warzone is a failure we do not forgive. You are no longer welcome in Deep Security space.'"
-        "reputation: Deep Security" -= 0.30
-        "reputation: R&R Stranded Ships Operations" -= 0.30
+		conversation
+			"The handler's voice is chillingly flat. 'Leaving our command team to die in a warzone is a failure we do not forgive. You are no longer welcome in Deep Security space.'"
+		"reputation: Deep Security" -= 0.30
+		"reputation: R&R Stranded Ships Operations" -= 0.30
 
 # Hard ones
 mission "Recovery Endgame Deep Security Core"
@@ -182,11 +191,13 @@ mission "Recovery Endgame Deep Security Core"
 		distance 8 13
 		not attributes "uninhabited"
 	cargo 110 150 0.15
+	deadline
 	to offer
 		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-		
+
 	npc
+		system destination
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Leviathan" "Ruined Deep Security Fortress"
@@ -194,10 +205,10 @@ mission "Recovery Endgame Deep Security Core"
 			"deep_endgame_asset_ambush_ready" = 1
 			conversation
 				"Your specialist crew extracts the dangerously unstable singularity mechanism. The chief yells that the core is secured but the gravity containment field is collapsing on the derelict, urging you to disengage as heavy raider warships and swarms of fast interceptors are dropping directly out of hyperspace on your coordinate tracks."
-			
+
 	on complete
 		conversation
-			"You land safely at the local spaceport. Heavily armed deep operatives swarm your ship to silently extract the singularity core and your holds are clear."
+			"The tension on your ship breaks only when heavily armed Deep operatives swarm your hold, locking the unstable singularity core into a heavy stasis-field container. A high-ranking Intelligence Director personally oversees the transfer. 'You just handed us the keys to this sector, Captain,' they say, their voice cold but approving. 'Consider your standing with us solidified.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
@@ -210,10 +221,10 @@ mission "Recovery Endgame Deep Security Core"
 		"reputation: R&R Stranded Ships Operations" -= 0.40
 		"your_mission_cooldown_date" = day + 30
 	on abort
-        conversation
-            "Deep Security command erupts in a rare display of rage. 'That core was irreplaceable! Your cowardice has just cost us a strategic advantage that took years to cultivate. You will regret this.'"
-        "reputation: Deep Security" -= 0.50
-        "reputation: R&R Stranded Ships Operations" -= 0.50
+		conversation
+			"Deep Security command erupts in a rare display of rage. 'That core was irreplaceable! Your cowardice has just cost us a strategic advantage that took years to cultivate. You will regret this.'"
+		"reputation: Deep Security" -= 0.50
+		"reputation: R&R Stranded Ships Operations" -= 0.50
 
 mission "Rescue Endgame Deep Security Agents"
 	name "CRITICAL: Evacuate Deep Intelligence Directors in <destination>"
@@ -227,11 +238,13 @@ mission "Rescue Endgame Deep Security Agents"
 	destination
 		distance 8 13
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-		
+
 	npc
+		system destination
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Leviathan" "Ruined Deep Security Fortress"
@@ -239,10 +252,10 @@ mission "Rescue Endgame Deep Security Agents"
 			"deep_endgame_rescue_ambush_ready" = 1
 			conversation
 				"The airlock mechanisms are overridden as silent heavily armored agents pour onto your decks. A director states coldly to break orbit as the black-site is compromised and hostiles are tracking your beacon."
-			
+
 	on complete
 		conversation
-			"You safely navigate down to the local spaceport. Unmarked transports lock down the hangar area as the directors disembark in total silence and your bunks are clear."
+			"You navigate to the spaceport under extreme radio silence. As the black-site Directors disembark into a secure bunker, the senior officer turns back. 'The intelligence in our heads is worth more than most planets, pilot. You didn't blink when the heat came down. Deep Security will not forget this level of competence.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
@@ -255,10 +268,10 @@ mission "Rescue Endgame Deep Security Agents"
 		"reputation: R&R Stranded Ships Operations" -= 0.40
 		"your_mission_cooldown_date" = day + 30
 	on abort
-        conversation
-            "An intelligence director personally logs your abort request. 'Directors are not expendable, and neither are your opportunities. You’ve shown your true colors, Captain. Don't look for work in our sector ever again.'"
-        "reputation: Deep Security" -= 0.50
-        "reputation: R&R Stranded Ships Operations" -= 0.50
+		conversation
+			"An intelligence director personally logs your abort request. 'Directors are not expendable, and neither are your opportunities. You’ve shown your true colors, Captain. Don't look for work in our sector ever again.'"
+		"reputation: Deep Security" -= 0.50
+		"reputation: R&R Stranded Ships Operations" -= 0.50
 
 # --- Ambush Missions ---
 

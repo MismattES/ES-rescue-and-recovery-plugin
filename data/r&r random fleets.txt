@@ -1,0 +1,37 @@
+fleet "R&R Ops Heavy Response"
+	government "R&R Stranded Ships Operations"
+	variant
+		"Leviathan" 1
+		"Argosy" 2
+
+
+fleet "R&R Ops Recon Patrol"
+	government "R&R Stranded Ships Operations"
+	variant
+		"Hawk" 2
+		"Sparrow" 2
+
+government "Derelict 2"
+	color 0.5 0.5 0.5
+
+mission "R&R Regional Spawner Recon"
+	invisible
+	repeat
+	entering
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Pirate" "Pirate Anarchists" "Militia" "Deep Security"
+	to offer
+		random < 75
+	npc
+		fleet "R&R Ops Recon Patrol"
+
+mission "R&R Regional Spawner Heavy"
+	invisible
+	repeat
+	entering
+	source
+		government "Republic" "Syndicate" "Free Worlds" "Independent" "Pirate" "Pirate Anarchists" "Militia" "Deep Security"
+	to offer
+		random < 10
+	npc
+		fleet "R&R Ops Heavy Response"

@@ -13,21 +13,23 @@ mission "Recovery Standard Republic Asset"
 		distance 2 7
 		not attributes "uninhabited"
 	cargo 10 20 0.7
+	deadline
 	to offer
 		"rr_intro_completed" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Headhunter" "Stranded Navy Vessel"
-			on assist
-				"rep_asset_ambush_1_ready" = 1
-				conversation
-					"Your crew cuts open the forward weapon bay extracting the dense magnetic rails."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Headhunter" "Stranded Navy Vessel"
+		on assist
+			"rep_asset_ambush_1_ready" = 1
+			conversation
+				"Your crew cuts open the forward weapon bay extracting the dense magnetic rails."
+
 	on complete
 		conversation
-			"You land at the local spaceport. Republic Navy quartermasters take custody of the magnetic rails and your holds are clear."
+			"You touch down at the spaceport where a crisp, uniformed Republic Navy quartermaster is waiting. They inspect the magnetic rails with an approving nod. 'Efficient work, Captain. The Navy relies on contractors who can execute orders without unnecessary complications. Your payment has been authorized.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Republic" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
@@ -38,10 +40,10 @@ mission "Recovery Standard Republic Asset"
 		"reputation: Republic" -= 0.15
 		"reputation: R&R Stranded Ships Operations" -= 0.15
 	on abort
-        conversation
-            "A Republic logistics clerk looks at your file with indifference. 'Aborting a standard recovery mission? We don't have time for hesitation. Your lack of professionalism has been noted and marked in your personnel file.'"
-        "reputation: Republic" -= 0.20
-        "reputation: R&R Stranded Ships Operations" -= 0.20
+		conversation
+			"A Republic logistics clerk looks at your file with indifference. 'Aborting a standard recovery mission? We don't have time for hesitation. Your lack of professionalism has been noted and marked in your personnel file.'"
+		"reputation: Republic" -= 0.20
+		"reputation: R&R Stranded Ships Operations" -= 0.20
 
 mission "Rescue Stranded Republic Soldiers"
 	name "Rescue Stranded Republic Crew in <destination>"
@@ -55,21 +57,23 @@ mission "Rescue Stranded Republic Soldiers"
 	destination
 		distance 2 7
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"rr_intro_completed" == 1
-	on accept
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Headhunter" "Stranded Navy Vessel"
-			on assist
-				"rep_rescue_ambush_1_ready" = 1
-				conversation
-					"The stranded Republic crew quickly boards your ship, eager to return to duty."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Headhunter" "Stranded Navy Vessel"
+		on assist
+			"rep_rescue_ambush_1_ready" = 1
+			conversation
+				"The stranded Republic crew quickly boards your ship, eager to return to duty."
+
 	on complete
 		conversation
-			"You land at the local spaceport. The Republic crew disembarks to rejoin the fleet and your bunks are clear."
+			"You land at the local spaceport, and the stranded Republic crew disembarks in perfect marching formation. A Navy logistics officer meets you at the dock, transferring your credits with a swift keystroke. 'The Republic leaves no personnel behind. Thank you for acting as a capable extension of our fleet operations today.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Republic" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
@@ -80,10 +84,10 @@ mission "Rescue Stranded Republic Soldiers"
 		"reputation: Republic" -= 0.15
 		"reputation: R&R Stranded Ships Operations" -= 0.15
 	on abort
-        conversation
-            "A Republic logistics officer coldly informs you: 'You were tasked with extracting Republic personnel and you walked away. That is a dereliction of duty, and the Republic does not tolerate such behavior.'"
-        "reputation: Republic" -= 0.20
-        "reputation: R&R Stranded Ships Operations" -= 0.20
+		conversation
+			"A Republic logistics officer coldly informs you: 'You were tasked with extracting Republic personnel and you walked away. That is a dereliction of duty, and the Republic does not tolerate such behavior.'"
+		"reputation: Republic" -= 0.20
+		"reputation: R&R Stranded Ships Operations" -= 0.20
 
 # Mid ones
 mission "Recovery Military Republic Asset"
@@ -98,21 +102,23 @@ mission "Recovery Military Republic Asset"
 		distance 4 9
 		not attributes "uninhabited"
 	cargo 40 70 0.4
+	deadline
 	to offer
 		"rr_mid_tier_unlocked" == 1
-	on accept
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Falcon" "Battered Fleet Hull"
-			on assist
-				"rep_asset_ambush_2_ready" = 1
-				conversation
-					"Your boarding party successfully rips the tactical routing matrix from the dead vessel's command node."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Falcon" "Battered Fleet Hull"
+		on assist
+			"rep_asset_ambush_2_ready" = 1
+			conversation
+				"Your boarding party successfully rips the tactical routing matrix from the dead vessel's command node."
+
 	on complete
 		conversation
-			"You land safely at the local spaceport. Republic Fleet engineers take custody of the matrix and your holds are clear."
+			"You land safely at the spaceport, immediately flanked by heavily armed Republic Fleet engineers who secure the tactical routing matrix. A Navy Commander logs the asset's recovery on his datapad. 'This comm hub is vital to our sector routing, pilot. You held your nerve against hostiles and delivered. The Republic commends your service.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Republic" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
@@ -123,10 +129,10 @@ mission "Recovery Military Republic Asset"
 		"reputation: Republic" -= 0.20
 		"reputation: R&R Stranded Ships Operations" -= 0.20
 	on abort
-        conversation
-            "The Republic Fleet commander stares at you with disdain. 'That tactical matrix was a military priority. Aborting your commitment because you grew fearful is a pathetic display of cowardice. You are dismissed.'"
-        "reputation: Republic" -= 0.25
-        "reputation: R&R Stranded Ships Operations" -= 0.25
+		conversation
+			"The Republic Fleet commander stares at you with disdain. 'That tactical matrix was a military priority. Aborting your commitment because you grew fearful is a pathetic display of cowardice. You are dismissed.'"
+		"reputation: Republic" -= 0.25
+		"reputation: R&R Stranded Ships Operations" -= 0.25
 
 mission "Rescue Military Republic Soldiers"
 	name "Extract Republic Infantry from <destination>"
@@ -140,21 +146,23 @@ mission "Rescue Military Republic Soldiers"
 	destination
 		distance 4 9
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"rr_mid_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Falcon" "Battered Fleet Hull"
-			on assist
-				"rep_rescue_ambush_2_ready" = 1
-				conversation
-					"A platoon of Republic heavy infantry secures themselves in your hold."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Falcon" "Battered Fleet Hull"
+		on assist
+			"rep_rescue_ambush_2_ready" = 1
+			conversation
+				"A platoon of Republic heavy infantry secures themselves in your hold."
+
 	on complete
 		conversation
-			"You land safely at the local spaceport. The infantry disembarks to report to local Republic command and your bunks are clear."
+			"You set down at the spaceport, and the platoon of Republic heavy infantry disembarks, their heavy boots echoing on the tarmac. The platoon sergeant turns to you before boarding their transport. 'We were sitting ducks out there. You executed a flawless extraction under pressure. The Navy owes you a debt, Captain.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Republic" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
@@ -165,10 +173,10 @@ mission "Rescue Military Republic Soldiers"
 		"reputation: Republic" -= 0.25
 		"reputation: R&R Stranded Ships Operations" -= 0.25
 	on abort
-        conversation
-            "Republic Command officially censures you: 'An entire tactical platoon left stranded due to your inability to finish a mission? You’ve proven yourself to be a complete liability to the Republic. Do not expect further contracts.'"
-        "reputation: Republic" -= 0.30
-        "reputation: R&R Stranded Ships Operations" -= 0.30
+		conversation
+			"Republic Command officially censures you: 'An entire tactical platoon left stranded due to your inability to finish a mission? You’ve proven yourself to be a complete liability to the Republic. Do not expect further contracts.'"
+		"reputation: Republic" -= 0.30
+		"reputation: R&R Stranded Ships Operations" -= 0.30
 
 # Hard ones
 mission "Recovery Endgame Republic Core"
@@ -183,22 +191,24 @@ mission "Recovery Endgame Republic Core"
 		distance 8 13
 		not attributes "uninhabited"
 	cargo 110 150 0.15
+	deadline
 	to offer
 		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Leviathan" "Burning Fleet Flagship"
-			on assist
-				"rep_endgame_asset_ambush_ready" = 1
-				conversation
-					"Your team successfully cuts the antimatter engine core free as the flagship's hull integrity drops to critical levels."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Leviathan" "Burning Fleet Flagship"
+		on assist
+			"rep_endgame_asset_ambush_ready" = 1
+			conversation
+				"Your team successfully cuts the antimatter engine core free as the flagship's hull integrity drops to critical levels."
+
 	on complete
 		conversation
-			"You safely navigate down to the local spaceport. Republic Fleet engineers quickly secure the volatile core and your holds are clear."
+			"You carefully touch down at the spaceport, engines whining from the strain. Republic Fleet engineers in hazard suits quickly swarm the hold, securing the humming antimatter core. A high-ranking Admiral contacts you directly. 'Securing that core denied our enemies a massive tactical advantage. Your operational excellence has been permanently noted by the Navy brass.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Republic" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
@@ -211,11 +221,11 @@ mission "Recovery Endgame Republic Core"
 		"reputation: R&R Stranded Ships Operations" -= 0.40
 		"your_mission_cooldown_date" = day + 30
 	on abort
-        conversation
-            "The Republic Admiral's voice is frigid. 'That antimatter core was a strategic necessity. Your choice to abort has severely compromised our local defensive capabilities. Your clearance is revoked—immediately.'"
-        "reputation: Republic" -= 0.50
-        "reputation: R&R Stranded Ships Operations" -= 0.50
-        "your_mission_cooldown_date" = day + 30
+		conversation
+			"The Republic Admiral's voice is frigid. 'That antimatter core was a strategic necessity. Your choice to abort has severely compromised our local defensive capabilities. Your clearance is revoked—immediately.'"
+		"reputation: Republic" -= 0.50
+		"reputation: R&R Stranded Ships Operations" -= 0.50
+		"your_mission_cooldown_date" = day + 30
 
 mission "Rescue Endgame Republic Soldiers"
 	name "CRITICAL: Evacuate Fleet Command Staff from <destination>"
@@ -229,22 +239,24 @@ mission "Rescue Endgame Republic Soldiers"
 	destination
 		distance 8 13
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Leviathan" "Burning Fleet Flagship"
-			on assist
-				"rep_endgame_rescue_ambush_ready" = 1
-				conversation
-					"The main airlock buckles under catastrophic stress as hundreds of wounded fleet staff pour onto your decks."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Leviathan" "Burning Fleet Flagship"
+		on assist
+			"rep_endgame_rescue_ambush_ready" = 1
+			conversation
+				"The main airlock buckles under catastrophic stress as hundreds of wounded fleet staff pour onto your decks."
+
 	on complete
 		conversation
-			"You safely navigate down to the local spaceport. Republic Fleet command takes charge of the evacuated staff. 'You have saved valuable command assets today,' the Admiral states, 'Your name is now at the top of our list for high-priority contracts.'"
+			"You safely navigate down to the spaceport, greeted by a massive security cordon. As the Fleet Command staff are escorted to safety, an Admiral approaches your cockpit. 'You navigated a catastrophic event and saved the minds that run this fleet, Captain. Your name is now at the absolute top of our list for high-priority contracts.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Republic" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
@@ -257,11 +269,11 @@ mission "Rescue Endgame Republic Soldiers"
 		"reputation: R&R Stranded Ships Operations" -= 0.40
 		"your_mission_cooldown_date" = day + 30
 	on abort
-        conversation
-            "A high-ranking intelligence officer logs your abort. 'You abandoned Fleet Command staff in a warzone. This level of incompetence is beyond salvage. Your clearance is permanently flagged, and you are officially blacklisted.'"
-        "reputation: Republic" -= 0.50
-        "reputation: R&R Stranded Ships Operations" -= 0.50
-        "your_mission_cooldown_date" = day + 30
+		conversation
+			"A high-ranking intelligence officer logs your abort. 'You abandoned Fleet Command staff in a warzone. This level of incompetence is beyond salvage. Your clearance is permanently flagged, and you are officially blacklisted.'"
+		"reputation: Republic" -= 0.50
+		"reputation: R&R Stranded Ships Operations" -= 0.50
+		"your_mission_cooldown_date" = day + 30
 
 # --- Ambush Missions ---
 

@@ -13,20 +13,22 @@ mission "Recovery Standard Free Worlds Asset"
 		distance 2 7
 		not attributes "uninhabited"
 	cargo 10 20 0.7
+	deadline
 	to offer
 		"rr_intro_completed" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Bounder" "Battered Frontier Miner"
-			on assist
-				"fw_asset_ambush_1_ready" = 1
-				conversation
-					"Your crew winches the dense heavy containment crate into your primary loading bay."
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Bounder" "Battered Frontier Miner"
+		on assist
+			"fw_asset_ambush_1_ready" = 1
+			conversation
+				"Your crew winches the dense heavy containment crate into your primary loading bay."
 	on complete
 		conversation
-			"You land at the local spaceport. Free Worlds quartermasters take custody of the dense containment crate and your loading bay is clear."
+			"You land at the local spaceport to the sight of an overworked Free Worlds quartermaster wiping sweat from their brow. They practically run onto your ship to verify the containment crate. 'Thank the stars you pulled this off,' they say with a tired grin. 'We were days away from a critical shortage. Good flying, pilot.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Free Worlds" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
@@ -37,11 +39,11 @@ mission "Recovery Standard Free Worlds Asset"
 		"reputation: Free Worlds" -= 0.15
 		"reputation: R&R Stranded Ships Operations" -= 0.15
 	on abort
-        conversation
-            "The Free Worlds quartermaster shakes his head. 'We needed that cache, and you abandoned your post. I didn't think you were the type to turn tail when things got tough. You've lost our trust.'"
-        "reputation: Free Worlds" -= 0.20
-        "reputation: R&R Stranded Ships Operations" -= 0.20
-		
+		conversation
+			"The Free Worlds quartermaster shakes his head. 'We needed that cache, and you abandoned your post. I didn't think you were the type to turn tail when things got tough. You've lost our trust.'"
+		"reputation: Free Worlds" -= 0.20
+		"reputation: R&R Stranded Ships Operations" -= 0.20
+
 mission "Rescue Stranded Free Worlds Militia"
 	name "Rescue Stranded Militia in <destination>"
 	description "A Free Worlds militia scout has been crippled in the <destination> system. You are requested to extract the stranded personnel and drop them off safely at the local spaceport there. Payment for their safe return is 45,000 credits."
@@ -54,21 +56,22 @@ mission "Rescue Stranded Free Worlds Militia"
 	destination
 		distance 2 7
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"rr_intro_completed" == 1
-	
-	on accept
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Bounder" "Battered Militia Scout"
-			on assist
-				"fw_rescue_ambush_1_ready" = 1
-				conversation
-				"Militia members scramble through the airlock into your bunks."		
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Bounder" "Battered Militia Scout"
+		on assist
+			"fw_rescue_ambush_1_ready" = 1
+			conversation
+				"Militia members scramble through the airlock into your bunks."
 	on complete
 		conversation
-			"You land at the local spaceport. The militia members disembark to rejoin their local garrison and your bunks are clear."
+			"The moment you touch down, the rescued militia members are already hauling their gear toward the airlock, cheering and clapping your crew on the back. A local garrison commander meets you at the ramp. 'Every soldier counts out here on the frontier. You brought our boys home, Captain. The Free Worlds owe you one.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Free Worlds" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
@@ -79,10 +82,10 @@ mission "Rescue Stranded Free Worlds Militia"
 		"reputation: Free Worlds" -= 0.15
 		"reputation: R&R Stranded Ships Operations" -= 0.15
 	on abort
-        conversation
-            "A militia officer looks at you with weary eyes. 'Those soldiers were counting on us—on you. If you can't be relied upon in the field, maybe the frontier isn't the place for you.'"
-        "reputation: Free Worlds" -= 0.20
-        "reputation: R&R Stranded Ships Operations" -= 0.20
+		conversation
+			"A militia officer looks at you with weary eyes. 'Those soldiers were counting on us—on you. If you can't be relied upon in the field, maybe the frontier isn't the place for you.'"
+		"reputation: Free Worlds" -= 0.20
+		"reputation: R&R Stranded Ships Operations" -= 0.20
 
 # Mid ones
 mission "Recovery Military Free Worlds Asset"
@@ -97,21 +100,23 @@ mission "Recovery Military Free Worlds Asset"
 		distance 4 9
 		not attributes "uninhabited"
 	cargo 40 70 0.4
+	deadline
 	to offer
 		"rr_mid_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Bastion" "Damaged Militia Blockade Runner"
-			on assist
-				"fw_military_asset_ambush_1_ready" = 1
-				conversation
-					"Your engineers winch the glowing reactor part aboard."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Bastion" "Damaged Militia Blockade Runner"
+		on assist
+			"fw_military_asset_ambush_1_ready" = 1
+			conversation
+				"Your engineers winch the glowing reactor part aboard."
+
 	on complete
 		conversation
-			"You arrive safely at the local spaceport. Free Worlds military technicians swiftly secure the glowing reactor part and your holds are clear."
+			"You set down at the spaceport, and Free Worlds technicians immediately swarm your cargo hold with geiger counters and hazard gear. A militia officer hands over your payment. 'That reactor part is going straight into a blockade runner on the front lines. You didn't just salvage tech today; you kept the war effort alive.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Free Worlds" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
@@ -122,10 +127,10 @@ mission "Recovery Military Free Worlds Asset"
 		"reputation: Free Worlds" -= 0.20
 		"reputation: R&R Stranded Ships Operations" -= 0.20
 	on abort
-        conversation
-            "The commander is livid. 'That tactical asset was crucial to our blockade operations. Aborting now is as good as giving it to the Syndicate. We'll find someone who actually cares about the war effort.'"
-        "reputation: Free Worlds" -= 0.25
-        "reputation: R&R Stranded Ships Operations" -= 0.25
+		conversation
+			"The commander is livid. 'That tactical asset was crucial to our blockade operations. Aborting now is as good as giving it to the Syndicate. We'll find someone who actually cares about the war effort.'"
+		"reputation: Free Worlds" -= 0.25
+		"reputation: R&R Stranded Ships Operations" -= 0.25
 
 mission "Rescue Military Free Worlds Militia"
 	name "Extract Free Worlds Elite Guard from <destination>"
@@ -139,21 +144,23 @@ mission "Rescue Military Free Worlds Militia"
 	destination
 		distance 4 9
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"rr_mid_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Bastion" "Crippled Militia Command Hull"
-			on assist
-				"fw_military_rescue_ambush_1_ready" = 1
-				conversation
-					"Battle-worn Free Worlds soldiers carrying heavy tactical gear secure themselves in your hold."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Bastion" "Crippled Militia Command Hull"
+		on assist
+			"fw_military_rescue_ambush_1_ready" = 1
+			conversation
+				"Battle-worn Free Worlds soldiers carrying heavy tactical gear secure themselves in your hold."
+
 	on complete
 		conversation
-			"You arrive safely at the local spaceport. The battle-worn soldiers disembark to report to local Free Worlds command and your bunks are clear."
+			"You arrive at the local spaceport, and the battle-worn elite guardsmen disembark, their armor scored with plasma burns. The squad leader pauses at the airlock, giving you a firm, respectful nod. 'We thought we were drifting into an early grave out there. You fly a good ship, Captain. We'll make sure High Command knows it.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Free Worlds" += 0.05
 		payment 100000
@@ -163,10 +170,10 @@ mission "Rescue Military Free Worlds Militia"
 		"reputation: Free Worlds" -= 0.25
 		"reputation: R&R Stranded Ships Operations" -= 0.25
 	on abort
-        conversation
-            "The militia liaison stares at you, voice cold. 'Those guards are elite veterans. Leaving them behind because the job got hard? You've proven you aren't ready for high-stakes militia contracts.'"
-        "reputation: Free Worlds" -= 0.30
-        "reputation: R&R Stranded Ships Operations" -= 0.30
+		conversation
+			"The militia liaison stares at you, voice cold. 'Those guards are elite veterans. Leaving them behind because the job got hard? You've proven you aren't ready for high-stakes militia contracts.'"
+		"reputation: Free Worlds" -= 0.30
+		"reputation: R&R Stranded Ships Operations" -= 0.30
 
 # Hard ones
 mission "Recovery Endgame Free Worlds Crystals"
@@ -181,22 +188,24 @@ mission "Recovery Endgame Free Worlds Crystals"
 		distance 8 13
 		not attributes "uninhabited"
 	cargo 110 150 0.15
+	deadline
 	to offer
 		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Leviathan" "Crippled Free Worlds Dreadnought"
-			on assist
-				"fw_endgame_asset_ambush_ready" = 1
-				conversation
-					"Your crew successfully extracts the massive highly volatile crystal crate."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Leviathan" "Crippled Free Worlds Dreadnought"
+		on assist
+			"fw_endgame_asset_ambush_ready" = 1
+			conversation
+				"Your crew successfully extracts the massive highly volatile crystal crate."
+
 	on complete
 		conversation
-			"You safely navigate down to the local spaceport. Specialized Free Worlds hazard teams carefully extract the highly volatile crystal cache. 'This stabilizes the local power grid for months, pilot,' the foreman says, 'You’ve done the frontier a great service today.'"
+			"You safely navigate down to the spaceport, where specialized Free Worlds hazard teams are waiting with heavy lifting rigs. As they carefully extract the highly volatile crystal cache, the local foreman shakes your hand vigorously. 'This plasma cache stabilizes the regional power grid for months, pilot. You didn't just salvage a wreck today; you kept the lights on for thousands.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Free Worlds" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
@@ -209,11 +218,11 @@ mission "Recovery Endgame Free Worlds Crystals"
 		"reputation: R&R Stranded Ships Operations" -= 0.40
 		"your_mission_cooldown_date" = day + 30
 	on abort
-        conversation
-            "The quartermaster is practically shouting. 'That plasma cache was the only thing keeping the lights on in this sector! You’ve doomed thousands to darkness because you were afraid of a few pirates. Get out of our sight.'"
-        "reputation: Free Worlds" -= 0.50
-        "reputation: R&R Stranded Ships Operations" -= 0.50
-        "your_mission_cooldown_date" = day + 30
+		conversation
+			"The quartermaster is practically shouting. 'That plasma cache was the only thing keeping the lights on in this sector! You’ve doomed thousands to darkness because you were afraid of a few pirates. Get out of our sight.'"
+		"reputation: Free Worlds" -= 0.50
+		"reputation: R&R Stranded Ships Operations" -= 0.50
+		"your_mission_cooldown_date" = day + 30
 
 mission "Rescue Endgame Free Worlds Militia"
 	name "CRITICAL: Evacuate Militia Generals in <destination>"
@@ -227,22 +236,24 @@ mission "Rescue Endgame Free Worlds Militia"
 	destination
 		distance 8 13
 		not attributes "uninhabited"
+	deadline
 	to offer
 		"your_mission_cooldown_date" <= day
 		"rr_hard_tier_unlocked" == 1
-	on accept	
-		npc
-			government "Derelict"
-			personality "derelict" "staying"
-			ship "Leviathan" "Crippled Free Worlds Dreadnought"
-			on assist
-				"fw_endgame_rescue_ambush_ready" = 1
-				conversation
-					"The main airlock groans under the stress as dozens of wounded militia staff pour onto your decks."
-			
+
+	npc
+		system destination
+		government "Derelict"
+		personality "derelict" "staying"
+		ship "Leviathan" "Crippled Free Worlds Dreadnought"
+		on assist
+			"fw_endgame_rescue_ambush_ready" = 1
+			conversation
+				"The main airlock groans under the stress as dozens of wounded militia staff pour onto your decks."
+
 	on complete
 		conversation
-			"You safely navigate down to the local spaceport. Medical teams rush to offload the wounded militia staff. 'You brought back our best, Captain,' the commander salutes, 'These veterans will be back on the line because of you.'"
+			"You safely navigate down to the local spaceport, instantly surrounded by rushing medical teams offloading the wounded generals. A heavily decorated Free Worlds Commander approaches you, saluting sharply. 'You flew into hell and brought back our best strategists, Captain. The Parliament itself will hear of your bravery today.'"
 		"rr_operations_jobs_done" ++
 		"reputation: Free Worlds" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
@@ -255,11 +266,11 @@ mission "Rescue Endgame Free Worlds Militia"
 		"reputation: R&R Stranded Ships Operations" -= 0.40
 		"your_mission_cooldown_date" = day + 30
 	on abort
-        conversation
-            "The Free Worlds Admiral sounds crushed. 'Those generals were our primary tactical link. By abandoning them, you’ve crippled our regional defense. I don't know what I expected from a freelancer, but I expected more than this.'"
-        "reputation: Free Worlds" -= 0.50
-        "reputation: R&R Stranded Ships Operations" -= 0.50
-        "your_mission_cooldown_date" = day + 30
+		conversation
+			"The Free Worlds Admiral sounds crushed. 'Those generals were our primary tactical link. By abandoning them, you’ve crippled our regional defense. I don't know what I expected from a freelancer, but I expected more than this.'"
+		"reputation: Free Worlds" -= 0.50
+		"reputation: R&R Stranded Ships Operations" -= 0.50
+		"your_mission_cooldown_date" = day + 30
 
 # --- Ambush Missions ---
 

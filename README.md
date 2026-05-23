@@ -20,5 +20,7 @@ The Pirate ambushes scale with the job tier!
 
 The first release is completely functional but I'll be adding more missions and optimizing R&R Ops as soon as I learn more about content creation.
 
+In later releases, I'll be expanding R&R Ops reach to alien space, with specific unlock missions for each alien race and scaling up the difficulty accordingly.
+
 Any feedback is more than welcome!
 

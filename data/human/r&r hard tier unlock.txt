@@ -6,7 +6,7 @@ mission "R&R Hard-Tier Emergency"
 	destination
 		planet "Ada"
 	waypoint
-		distance 8 13 destination
+		system "Ultima Thule"
 	deadline
 	to offer
 		"rr_hard_tier_unlocked" == 0
@@ -29,7 +29,7 @@ mission "R&R Hard-Tier Emergency"
 	passengers 40 20 1
 
 	npc
-		system waypoint
+		system "Ultima Thule"
 		government "Derelict"
 		personality "derelict" "staying"
 		ship "Leviathan" "Burning Fleet Flagship"

@@ -32,7 +32,7 @@ mission "Recovery Standard Deep Asset"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
-		payment 45000
+		payment 100000
 	on fail
 		conversation
 			"Deep Security Intelligence places a secure administrative lockdown black mark across your spacer pilot file."
@@ -75,7 +75,7 @@ mission "Rescue Stranded Deep Security Agents"
 		"rr_operations_jobs_done" ++
 		"reputation: Deep Security" += 0.01
 		"reputation: R&R Stranded Ships Operations" += 0.01
-		payment 45000
+		payment 100000
 	on fail
 		conversation
 			"Deep Security Intelligence logs a massive failure on your record for the loss of their undercover agents."
@@ -120,7 +120,7 @@ mission "Recovery Military Deep Security Asset"
 		"rr_mid_tier_jobs_done" ++
 		"reputation: Deep Security" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
-		payment 100000
+		payment 225000
 	on fail
 		conversation
 			"Deep Security Intelligence places a massive bounty and operational block on your license for the lost data."
@@ -164,7 +164,7 @@ mission "Rescue Military Deep Security Agents"
 		"rr_mid_tier_jobs_done" ++
 		"reputation: Deep Security" += 0.05
 		"reputation: R&R Stranded Ships Operations" += 0.05
-		payment 100000
+		payment 225000
 	on fail
 		conversation
 			"Deep Security Intelligence places a secure administrative lockdown black mark across your spacer pilot file."
@@ -211,7 +211,7 @@ mission "Recovery Endgame Deep Security Core"
 		"reputation: Deep Security" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
 		"your_mission_cooldown_date" = day + 15
-		payment 250000
+		payment 375000
 	on fail
 		conversation
 			"Deep Security cuts all ties, completely revoking your clearance for losing a weapon of mass destruction."
@@ -258,7 +258,7 @@ mission "Rescue Endgame Deep Security Agents"
 		"reputation: Deep Security" += 0.15
 		"reputation: R&R Stranded Ships Operations" += 0.15
 		"your_mission_cooldown_date" = day + 15
-		payment 250000
+		payment 375000
 	on fail
 		conversation
 			"Deep Security Intelligence places a kill order on your file because you allowed top-tier directors to fall into the hands of unknown hostiles."
